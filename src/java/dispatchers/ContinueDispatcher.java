@@ -21,18 +21,7 @@ public class ContinueDispatcher implements Dispatcherss{
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
     String nextPage = "/jsp/titles.jsp";
-         dispatch(request, response, nextPage);
-        return null;
-    }
-
-    private void dispatch(HttpServletRequest request, HttpServletResponse response, String nextPage) {
-        try {
-            RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
-            dispatcher.forward(request, response);
-        } catch (ServletException ex) {
-            Logger.getLogger(AddToCartDispatcher.class.getName()).log(Level.SEVERE, "ServletException during dispatch", ex);
-        } catch (IOException ex) {
-            Logger.getLogger(AddToCartDispatcher.class.getName()).log(Level.SEVERE, "IOException during dispatch", ex);
-        }
+        // dispatch(request, response, nextPage);
+        return nextPage;
     }
 }

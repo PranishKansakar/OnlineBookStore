@@ -34,8 +34,7 @@ public class AddToCartDispatcher implements Dispatcherss {
         String[] selectedBooks = request.getParameterValues("add");
 
         if (selectedBooks == null || selectedBooks.length == 0) {
-            dispatch(request, response, nextPage);
-            return null;
+              return nextPage;
         }
 
         if (cart == null) {
@@ -62,20 +61,10 @@ public class AddToCartDispatcher implements Dispatcherss {
             }
         }
 
-        dispatch(request, response, nextPage);
-        return null;
+        return nextPage;
     }
 
-    private void dispatch(HttpServletRequest request, HttpServletResponse response, String nextPage) {
-    try {
-        RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
-        dispatcher.forward(request, response);
-    } catch (ServletException ex) {
-        Logger.getLogger(AddToCartDispatcher.class.getName()).log(Level.SEVERE, "ServletException during dispatch", ex);
-    } catch (IOException ex) {
-        Logger.getLogger(AddToCartDispatcher.class.getName()).log(Level.SEVERE, "IOException during dispatch", ex);
-    }
-}
+
 
 
     private Tbooks getBookFromList(String isbn, HttpSession session) {

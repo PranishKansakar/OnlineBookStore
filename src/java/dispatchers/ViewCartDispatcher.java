@@ -28,22 +28,11 @@ public class ViewCartDispatcher implements Dispatcherss {
 
         Map<String, CartItem> cart = (Map<String, CartItem>) session.getAttribute("cart");
         if (cart == null) {
-            // If no cart in session, redirect to titles page
+  
             nextPage = "/jsp/titles.jsp";
         }
 
-           dispatch(request, response, nextPage);
-        return null;
-    }
-
-    private void dispatch(HttpServletRequest request, HttpServletResponse response, String nextPage) {
-        try {
-            RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
-            dispatcher.forward(request, response);
-        } catch (ServletException ex) {
-            Logger.getLogger(AddToCartDispatcher.class.getName()).log(Level.SEVERE, "ServletException during dispatch", ex);
-        } catch (IOException ex) {
-            Logger.getLogger(AddToCartDispatcher.class.getName()).log(Level.SEVERE, "IOException during dispatch", ex);
-        }
+     
+        return nextPage;
     }
 }

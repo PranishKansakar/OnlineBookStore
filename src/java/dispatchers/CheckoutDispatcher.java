@@ -12,6 +12,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -21,18 +22,7 @@ public class CheckoutDispatcher implements Dispatcherss {
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String nextPage = "/jsp/checkout.jsp";
-        dispatch(request, response, nextPage);
-        return null;
-    }
-
-    private void dispatch(HttpServletRequest request, HttpServletResponse response, String nextPage) {
-        try {
-            RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
-            dispatcher.forward(request, response);
-        } catch (ServletException ex) {
-            Logger.getLogger(AddToCartDispatcher.class.getName()).log(Level.SEVERE, "ServletException during dispatch", ex);
-        } catch (IOException ex) {
-            Logger.getLogger(AddToCartDispatcher.class.getName()).log(Level.SEVERE, "IOException during dispatch", ex);
-        }
+      
+        return nextPage;
     }
 }

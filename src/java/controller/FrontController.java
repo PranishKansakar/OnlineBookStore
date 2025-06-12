@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import model.Tbooks;
 
 /**
  * FrontController class to handle HTTP requests and responses.
@@ -20,7 +19,7 @@ public class FrontController extends HttpServlet {
     private String defaultPage;
     private String errorPage;
 
-    @PersistenceContext(unitName = "BookShopPU") // Make sure this matches your persistence.xml unit
+    @PersistenceContext(unitName = "BookShopPU")
     private EntityManager em;
 
     @Resource
@@ -37,6 +36,7 @@ public class FrontController extends HttpServlet {
         errorPage = config.getInitParameter("errorPage");
 
         // Dispatcher mappings
+        actions.put(null, new TitlesDispatcher());
         actions.put("add_to_cart", new AddToCartDispatcher());
         actions.put("view_cart", new ViewCartDispatcher());
         actions.put("checkout", new CheckoutDispatcher());
@@ -58,25 +58,12 @@ public class FrontController extends HttpServlet {
         response.setContentType("text/html");
 
         String requestedAction = request.getParameter("action");
-        HttpSession session = request.getSession();
         String nextPage = errorPage;
-
-        if (requestedAction == null) {
-            try {
-                List<Tbooks> books = em.createQuery("SELECT b FROM Tbooks b", Tbooks.class).getResultList();
-                session.setAttribute("Books", books);
-                nextPage = defaultPage;
-            } catch (Exception ex) {
-                request.setAttribute("result", ex.getMessage());
-            } finally {
-                dispatch(request, response, nextPage);
-                return;
-            }
-        }
-
         Dispatcherss dispatcher = actions.get(requestedAction);
+        
         if (dispatcher != null) {
-            dispatcher.execute(request, response);
+         String page =   dispatcher.execute(request, response);
+         this.dispatch(request, response, page);
         } else {
             request.setAttribute("result", "Unknown action: " + requestedAction);
             dispatch(request, response, errorPage);

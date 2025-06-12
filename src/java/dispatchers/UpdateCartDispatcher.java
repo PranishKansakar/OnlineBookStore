@@ -47,26 +47,17 @@ public class UpdateCartDispatcher implements Dispatcherss{
                         int quantity = Integer.parseInt(qtyParam);
                         item.updateQuantity(quantity);
                     } catch (NumberFormatException e) {
-                        // Optionally handle invalid number format (e.g., ignore or set default)
-                        item.updateQuantity(1); // default to 1 if parse fails
+ 
+                        item.updateQuantity(1); 
                     }
                 }
             }
         }
 
          
-        dispatch(request, response, nextPage);
-        return null;
+      
+        return nextPage;
     }
 
-    private void dispatch(HttpServletRequest request, HttpServletResponse response, String nextPage) {
-        try {
-            RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
-            dispatcher.forward(request, response);
-        } catch (ServletException ex) {
-            Logger.getLogger(AddToCartDispatcher.class.getName()).log(Level.SEVERE, "ServletException during dispatch", ex);
-        } catch (IOException ex) {
-            Logger.getLogger(AddToCartDispatcher.class.getName()).log(Level.SEVERE, "IOException during dispatch", ex);
-        }
-    }
+
 }
