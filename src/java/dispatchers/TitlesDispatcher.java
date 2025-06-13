@@ -31,7 +31,7 @@ public class TitlesDispatcher implements Dispatcherss{
     private javax.transaction.UserTransaction utx;
 
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        System.out.print("In Tiltes Dispat");
+     
         HttpSession session = request.getSession();
         emf = Persistence.createEntityManagerFactory("BookShopPU");
         em =emf.createEntityManager();
@@ -50,7 +50,11 @@ public class TitlesDispatcher implements Dispatcherss{
 
     }
 
- public void persist(Object object) {
+    /**
+     *
+     * @param object
+     */
+    public void persist(Object object) {
         try {
             utx.begin();
             em.persist(object);

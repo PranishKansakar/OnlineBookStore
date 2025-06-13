@@ -50,46 +50,90 @@ public class Tbooks implements Serializable {
     @Column(name = "PRICE")
     private double price;
 
+    /**
+     *
+     */
     public Tbooks() {
     }
 
+    /**
+     *
+     * @param isbn
+     */
     public Tbooks(String isbn) {
         this.isbn = isbn;
     }
 
+    /**
+     *
+     * @param isbn
+     * @param price
+     */
     public Tbooks(String isbn, double price) {
         this.isbn = isbn;
         this.price = price;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getIsbn() {
         return isbn;
     }
 
+    /**
+     *
+     * @param isbn
+     */
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     *
+     * @param title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     *
+     * @param author
+     */
     public void setAuthor(String author) {
         this.author = author;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getPrice() {
         return price;
     }
 
+    /**
+     *
+     * @param price
+     */
     public void setPrice(double price) {
         this.price = price;
     }
@@ -119,6 +163,10 @@ public class Tbooks implements Serializable {
         return "Title: " + title + "  ";
     }
     
+    /**
+     *
+     * @return
+     */
     public String getDollarPrice() {
         DecimalFormat priceFormat = new DecimalFormat("0.00");
         return "$" + priceFormat.format(this.price);

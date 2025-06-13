@@ -29,6 +29,8 @@ public class FrontController extends HttpServlet {
 
     /**
      * Initialize global variables.
+     * @param config
+     * @throws javax.servlet.ServletException
      */
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -46,6 +48,10 @@ public class FrontController extends HttpServlet {
 
     /**
      * Handle GET requests.
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
@@ -53,6 +59,10 @@ public class FrontController extends HttpServlet {
 
     /**
      * Handle POST requests.
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -78,10 +88,18 @@ public class FrontController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+    /**
+     *
+     * @return
+     */
     public String getServletInfo() {
         return "controller.FrontController Information";
     }
 
+    /**
+     *
+     * @param object
+     */
     public void persist(Object object) {
         try {
             utx.begin();

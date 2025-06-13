@@ -13,7 +13,14 @@ import javax.servlet.http.HttpServletResponse;
  * @author Cool_
  */
 public interface Dispatcherss {
-        public String execute(HttpServletRequest request, HttpServletResponse response);
+
+    /**
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    public String execute(HttpServletRequest request, HttpServletResponse response);
 
         
 }
